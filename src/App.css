@@ -1,6 +1,8 @@
 .App {
   display: grid;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
+  /* place-items: center; */
   height: 100vh;
   background-color: #bebfb9;
 }
