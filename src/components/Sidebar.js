@@ -5,6 +5,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Avatar, IconButton } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
+import { SidebarChat } from "./SidebarChat";
 
 export const Sidebar = () => {
   return (
@@ -19,11 +20,15 @@ export const Sidebar = () => {
       </div>
       <div className="sidebar_search">
         <div className="sidebar_search_container">
-            <SearchOutlined/>
-            <input placeholder="Search or begin new chat" />
+          <SearchOutlined />
+          <input placeholder="Search or begin new chat" />
         </div>
       </div>
-      <div className="sidebar_chats"></div>
+      <div className="sidebar_chats">
+        <SidebarChat/>
+        <SidebarChat/>
+        <SidebarChat/>
+      </div>
     </div>
   );
 };
