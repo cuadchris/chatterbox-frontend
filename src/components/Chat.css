@@ -33,3 +33,31 @@
   padding: 30px;
   overflow: scroll;
 }
+
+.chat_message {
+  position: relative;
+  font-size: 16px;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: #e8e8ea;
+  margin-bottom: 30px;
+}
+
+.chat_receiver {
+  margin-left: auto;
+  background-color: #007aff;
+  color: white;
+}
+
+.chat_timestamp {
+  margin-left: 10px;
+  font-size: xx-small;
+}
+
+.chat_name {
+  position: absolute;
+  top: -15px;
+  font-weight: 800;
+  font-size: xx-small;
+}
