@@ -1,24 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  AttachFile,
-  InsertEmoticon,
-  MoreVert,
-  SearchOutlined,
-} from "@mui/icons-material";
+import { InsertEmoticon } from "@mui/icons-material";
 import { Avatar } from "@mui/material";
 import MicIcon from "@mui/icons-material/Mic";
 import "./Chat.css";
 import axios from "./axios";
 import { nanoid } from "nanoid";
-// import { useStateValue } from "../StateProvider";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export const Chat = ({ messages }) => {
-  const [randomInt, setRandomInt] = useState("");
   const [input, setInput] = useState("");
   const bottomRef = useRef(null);
 
-  // const [{ user }, dispatch] = useStateValue();
   const { user } = useAuth0();
 
   const sendMessage = async (e) => {
@@ -33,10 +25,6 @@ export const Chat = ({ messages }) => {
   };
 
   useEffect(() => {
-    setRandomInt(Math.floor(Math.random() * 5000));
-  }, []);
-
-  useEffect(() => {
     // 👇️ scroll to bottom every time messages change
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -44,18 +32,12 @@ export const Chat = ({ messages }) => {
   return (
     <div className="chat">
       <div className="chat_header">
-        <Avatar
-          src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/219/original/ct-logo.png"
-        />
+        <Avatar src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/219/original/ct-logo.png" />
         <div className="chat_header_info">
           <h3>Capstone</h3>
           <p>Last message at {messages[messages.length - 1]?.timestamp}</p>
         </div>
-        <div className="chat_header_right">
-          {/* <SearchOutlined />
-          <AttachFile />
-          <MoreVert /> */}
-        </div>
+        <div className="chat_header_right"></div>
       </div>
       <div className="chat_body">
         {messages.map((message) => (
@@ -88,9 +70,6 @@ export const Chat = ({ messages }) => {
             placeholder="Type a message"
             type="text"
           />
-          {/* <button onClick={sendMessage} type="submit">
-            Send a message
-          </button> */}
         </form>
         <MicIcon className="icon" />
       </div>
