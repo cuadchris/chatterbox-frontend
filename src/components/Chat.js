@@ -9,7 +9,7 @@ import { Avatar } from "@mui/material";
 import MicIcon from "@mui/icons-material/Mic";
 import "./Chat.css";
 
-export const Chat = () => {
+export const Chat = ({ messages }) => {
   const [randomInt, setRandomInt] = useState("");
 
   useEffect(() => {
@@ -33,20 +33,17 @@ export const Chat = () => {
         </div>
       </div>
       <div className="chat_body">
-        <p className="chat_message">
-          <span className="chat_name">Chris</span>This is a pointless message
-          <span className="chat_timestamp">{new Date().toUTCString()}</span>
-        </p>
-        <p className="chat_message chat_receiver">
-          <span className="chat_name">Brandt</span>This is a message back thats
-          also pointless
-          <span className="chat_timestamp">{new Date().toUTCString()}</span>
-        </p>
-        <p className="chat_message">
-          <span className="chat_name">Chris</span>This is a message again again
-          buddy
-          <span className="chat_timestamp">{new Date().toUTCString()}</span>
-        </p>
+        {messages.map((message) => (
+          <div key={message._id}>
+            <p
+              className={`chat_message ${message.received && "chat_receiver"}`}
+            >
+              <span className="chat_name">{message.name}</span>
+              {message.message}
+              <span className="chat_timestamp">{message.timestamp}</span>
+            </p>
+          </div>
+        ))}
       </div>
       <div className="chat_footer">
         <InsertEmoticon className="icon" />

@@ -3,9 +3,16 @@ import Pusher from "pusher-js";
 import "./App.css";
 import { Chat } from "./components/Chat";
 import { Sidebar } from "./components/Sidebar";
+import axios from "./components/axios";
 
 function App() {
   const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    axios.get("/messages/sync").then((res) => {
+      setMessages(res.data);
+    });
+  }, []);
 
   useEffect(() => {
     const pusher = new Pusher("0b050d35b8ed03689cee", {
@@ -16,18 +23,18 @@ function App() {
       setMessages([...messages, data]);
     });
     return () => {
-      channel.unbind_all()
-      channel.unsubscribe()
-    }
+      channel.unbind_all();
+      channel.unsubscribe();
+    };
   }, [messages]);
 
-  console.log(messages)
+  console.log(messages);
 
   return (
     <div className="App">
       <div className="app_body">
         <Sidebar />
-        <Chat />
+        <Chat messages = {messages} />
       </div>
     </div>
   );
