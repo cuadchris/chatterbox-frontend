@@ -2,7 +2,7 @@ import { Avatar } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import "./SidebarChat.css";
 
-export const SidebarChat = () => {
+export const SidebarChat = ({messages}) => {
   //Generates a random avatar just for testing.  
   const [randomInt, setRandomInt] = useState("");
 
@@ -14,8 +14,8 @@ export const SidebarChat = () => {
     <div className="sidebarChat">
       <Avatar src={`https://avatars.dicebear.com/api/human/b${randomInt}.svg`} />
       <div className="sidebarChat_info">
-        <h2>Room name</h2>
-        <p>Last message...</p>
+        <h2>Capstone</h2>
+        <p>{messages[messages.length - 1]?.message}</p>
       </div>
     </div>
   );

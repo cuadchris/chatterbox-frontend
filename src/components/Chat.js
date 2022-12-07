@@ -10,16 +10,19 @@ import MicIcon from "@mui/icons-material/Mic";
 import "./Chat.css";
 import axios from "./axios";
 import { nanoid } from "nanoid";
+import { useStateValue } from "../StateProvider";
 
 export const Chat = ({ messages }) => {
   const [randomInt, setRandomInt] = useState("");
   const [input, setInput] = useState("");
 
+  const [{ user }, dispatch] = useStateValue();
+
   const sendMessage = async (e) => {
     e.preventDefault();
     await axios.post("/messages/new", {
       message: input,
-      name: "Chris",
+      name: user.displayName,
       timestamp: new Date().toUTCString(),
       received: true,
     });
@@ -37,8 +40,8 @@ export const Chat = ({ messages }) => {
           src={`https://avatars.dicebear.com/api/human/b${randomInt}.svg`}
         />
         <div className="chat_header_info">
-          <h3>Room Name</h3>
-          <p>Last seen at...</p>
+          <h3>Capstone</h3>
+          <p>Last message at {messages[messages.length - 1]?.timestamp}</p>
         </div>
         <div className="chat_header_right">
           <SearchOutlined />
@@ -50,7 +53,9 @@ export const Chat = ({ messages }) => {
         {messages.map((message) => (
           <div key={nanoid()}>
             <p
-              className={`chat_message ${message.received && "chat_receiver"}`}
+              className={`chat_message ${
+                message.name === user.displayName && "chat_receiver"
+              }`}
             >
               <span className="chat_name">{message.name}</span>
               {message.message}
@@ -61,16 +66,16 @@ export const Chat = ({ messages }) => {
       </div>
       <div className="chat_footer">
         <InsertEmoticon className="icon" />
-        <form>
+        <form onSubmit={sendMessage}>
           <input
             onChange={(e) => setInput(e.target.value)}
             value={input}
             placeholder="Type a message"
             type="text"
           />
-          <button onClick={sendMessage} type="submit">
+          {/* <button onClick={sendMessage} type="submit">
             Send a message
-          </button>
+          </button> */}
         </form>
         <MicIcon className="icon" />
       </div>

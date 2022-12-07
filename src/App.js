@@ -40,7 +40,7 @@ function App() {
         <Login />
       ) : (
         <div className="app_body">
-          <Sidebar />
+          <Sidebar messages={messages} />
           <Chat messages={messages} />
         </div>
       )}

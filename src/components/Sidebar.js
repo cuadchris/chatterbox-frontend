@@ -6,12 +6,16 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Avatar } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 import { SidebarChat } from "./SidebarChat";
+import { useStateValue } from "../StateProvider";
 
-export const Sidebar = () => {
+export const Sidebar = ({messages}) => {
+
+  const [{user}, dispatch] = useStateValue()
+
   return (
     <div className="sidebar">
       <div className="sidebar_header">
-        <Avatar src="https://cdn-icons-png.flaticon.com/512/147/147142.png" />
+        <Avatar src={user?.photoURL} />
         <div className="sidebar_header_right">
           <DonutLargeIcon />
           <ChatIcon />
@@ -25,9 +29,7 @@ export const Sidebar = () => {
         </div>
       </div>
       <div className="sidebar_chats">
-        <SidebarChat/>
-        <SidebarChat/>
-        <SidebarChat/>
+        <SidebarChat messages={messages} />
       </div>
     </div>
   );
