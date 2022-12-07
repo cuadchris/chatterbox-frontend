@@ -17,7 +17,7 @@ export const Chat = ({ messages }) => {
     e.preventDefault();
     await axios.post("/messages/new", {
       message: input,
-      name: user.name,
+      name: user.email,
       timestamp: new Date().toUTCString(),
       received: true,
     });
@@ -44,15 +44,15 @@ export const Chat = ({ messages }) => {
           <div key={nanoid()}>
             <p
               className={`chat_message ${
-                message.name === user.name && "chat_receiver"
+                message.name === user.email && "chat_receiver"
               }`}
             >
               <span
                 className={`chat_name ${
-                  message.name === user.name && "dark_name"
+                  message.name === user.email && "dark_name"
                 }`}
               >
-                {message.name}
+                {user.name}
               </span>
               {message.message}
               <span className="chat_timestamp">{message.timestamp}</span>
