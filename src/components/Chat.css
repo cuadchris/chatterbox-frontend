@@ -47,7 +47,8 @@
 .chat_receiver {
   margin-left: auto;
   background-color: #007aff;
-  color: white;
+  /* color: white; */
+  color: black;
 }
 
 .chat_timestamp {
