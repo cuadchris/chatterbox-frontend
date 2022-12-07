@@ -6,10 +6,12 @@ import { Sidebar } from "./components/Sidebar";
 import axios from "./components/axios";
 import { Login } from "./components/Login";
 import { useStateValue } from "./StateProvider";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
   const [messages, setMessages] = useState([]);
-  const [{user}, dispatch] = useStateValue()
+  // const [{user}, dispatch] = useStateValue()
+  const { user, isAuthenticated } = useAuth0()
   // const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -33,10 +35,11 @@ function App() {
   }, [messages]);
 
   console.log(messages);
+  console.log(user)
 
   return (
     <div className="App">
-      {!user ? (
+      {!isAuthenticated ? (
         <Login />
       ) : (
         <div className="app_body">

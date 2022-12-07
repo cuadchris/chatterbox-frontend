@@ -10,20 +10,22 @@ import MicIcon from "@mui/icons-material/Mic";
 import "./Chat.css";
 import axios from "./axios";
 import { nanoid } from "nanoid";
-import { useStateValue } from "../StateProvider";
+// import { useStateValue } from "../StateProvider";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Chat = ({ messages }) => {
   const [randomInt, setRandomInt] = useState("");
   const [input, setInput] = useState("");
   const bottomRef = useRef(null);
 
-  const [{ user }, dispatch] = useStateValue();
+  // const [{ user }, dispatch] = useStateValue();
+  const { user } = useAuth0()
 
   const sendMessage = async (e) => {
     e.preventDefault();
     await axios.post("/messages/new", {
       message: input,
-      name: user.displayName,
+      name: user.name,
       timestamp: new Date().toUTCString(),
       received: true,
     });
@@ -60,10 +62,10 @@ export const Chat = ({ messages }) => {
           <div key={nanoid()}>
             <p
               className={`chat_message ${
-                message.name === user.displayName && "chat_receiver"
+                message.name === user.name && "chat_receiver"
               }`}
             >
-              <span className={`chat_name ${message.name === user.displayName && "dark_name"}`}>{message.name}</span>
+              <span className={`chat_name ${message.name === user.name && "dark_name"}`}>{message.name}</span>
               {message.message}
               <span className="chat_timestamp">{message.timestamp}</span>
             </p>
