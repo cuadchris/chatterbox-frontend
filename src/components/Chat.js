@@ -52,7 +52,7 @@ export const Chat = ({ messages }) => {
                   message.name === user.email && "dark_name"
                 }`}
               >
-                {user.name}
+                {message.name}
               </span>
               {message.message}
               <span className="chat_timestamp">{message.timestamp}</span>
