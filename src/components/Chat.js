@@ -52,9 +52,9 @@ export const Chat = ({ messages }) => {
           <p>Last message at {messages[messages.length - 1]?.timestamp}</p>
         </div>
         <div className="chat_header_right">
-          <SearchOutlined />
+          {/* <SearchOutlined />
           <AttachFile />
-          <MoreVert />
+          <MoreVert /> */}
         </div>
       </div>
       <div className="chat_body">

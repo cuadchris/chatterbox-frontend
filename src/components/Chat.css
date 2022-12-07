@@ -27,10 +27,11 @@
 
 .chat_body {
   flex: 1;
-  background-image: url("https://img.freepik.com/premium-photo/old-paper-texture-background_118047-1365.jpg?w=2000");
+  /* background-image: url("https://img.freepik.com/premium-photo/old-paper-texture-background_118047-1365.jpg?w=2000");
   background-repeat: repeat;
-  background-position: center;
+  background-position: center; */
   padding: 30px;
+  background-color: white;
   overflow: scroll;
 }
 
@@ -67,7 +68,7 @@
   justify-content: space-between;
   align-items: center;
   height: 62px;
-  border-top: 1px solid lightgray;
+  border: 1px solid lightgray;
 }
 
 .chat_footer > form {
