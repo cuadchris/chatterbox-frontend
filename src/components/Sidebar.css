@@ -40,7 +40,7 @@
   border-radius: 20px;
 }
 
-.sidebar_search_container > MuiSvgIcon-root {
+.sidebar_search_container > .MuiSvgIcon-root {
   color: gray;
   padding: 10px;
 }
