@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   AttachFile,
   InsertEmoticon,
@@ -15,6 +15,7 @@ import { useStateValue } from "../StateProvider";
 export const Chat = ({ messages }) => {
   const [randomInt, setRandomInt] = useState("");
   const [input, setInput] = useState("");
+  const bottomRef = useRef(null);
 
   const [{ user }, dispatch] = useStateValue();
 
@@ -32,6 +33,11 @@ export const Chat = ({ messages }) => {
   useEffect(() => {
     setRandomInt(Math.floor(Math.random() * 5000));
   }, []);
+
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   return (
     <div className="chat">
@@ -57,12 +63,13 @@ export const Chat = ({ messages }) => {
                 message.name === user.displayName && "chat_receiver"
               }`}
             >
-              <span className="chat_name">{message.name}</span>
+              <span className={`chat_name ${message.name === user.displayName && "dark_name"}`}>{message.name}</span>
               {message.message}
               <span className="chat_timestamp">{message.timestamp}</span>
             </p>
           </div>
         ))}
+        <div ref={bottomRef} />
       </div>
       <div className="chat_footer">
         <InsertEmoticon className="icon" />

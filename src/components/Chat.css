@@ -47,8 +47,7 @@
 .chat_receiver {
   margin-left: auto;
   background-color: #007aff;
-  /* color: white; */
-  color: black;
+  color: white;
 }
 
 .chat_timestamp {
@@ -91,4 +90,8 @@
 .icon {
   padding: 10px;
   color: gray;
+}
+
+.dark_name {
+  color: black;
 }
