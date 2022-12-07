@@ -19,7 +19,9 @@ export const Sidebar = ({ messages }) => {
       <div className="sidebar_header">
         <Avatar src={user?.picture} />
         <div className="sidebar_header_right">
-          <IconButton onClick={() => logout({ returnTo: window.location.origin })}>
+          <IconButton
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
             <LogoutIcon />
           </IconButton>
         </div>

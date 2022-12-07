@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      {!isAuthenticated ? (
+      {!user ? (
         <Login />
       ) : (
         <div className="app_body">

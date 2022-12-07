@@ -19,7 +19,7 @@ export const Chat = ({ messages }) => {
   const bottomRef = useRef(null);
 
   // const [{ user }, dispatch] = useStateValue();
-  const { user } = useAuth0()
+  const { user } = useAuth0();
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ export const Chat = ({ messages }) => {
     <div className="chat">
       <div className="chat_header">
         <Avatar
-          src={`https://avatars.dicebear.com/api/human/b${randomInt}.svg`}
+          src="https://coursereport-s3-production.global.ssl.fastly.net/uploads/school/logo/219/original/ct-logo.png"
         />
         <div className="chat_header_info">
           <h3>Capstone</h3>
@@ -65,7 +65,13 @@ export const Chat = ({ messages }) => {
                 message.name === user.name && "chat_receiver"
               }`}
             >
-              <span className={`chat_name ${message.name === user.name && "dark_name"}`}>{message.name}</span>
+              <span
+                className={`chat_name ${
+                  message.name === user.name && "dark_name"
+                }`}
+              >
+                {message.name}
+              </span>
               {message.message}
               <span className="chat_timestamp">{message.timestamp}</span>
             </p>
