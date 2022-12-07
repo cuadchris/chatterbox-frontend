@@ -8,9 +8,23 @@ import {
 import { Avatar } from "@mui/material";
 import MicIcon from "@mui/icons-material/Mic";
 import "./Chat.css";
+import axios from "./axios";
+import { nanoid } from "nanoid";
 
 export const Chat = ({ messages }) => {
   const [randomInt, setRandomInt] = useState("");
+  const [input, setInput] = useState("");
+
+  const sendMessage = async (e) => {
+    e.preventDefault();
+    await axios.post("/messages/new", {
+      message: input,
+      name: "Chris",
+      timestamp: new Date().toUTCString(),
+      received: true,
+    });
+    setInput("");
+  };
 
   useEffect(() => {
     setRandomInt(Math.floor(Math.random() * 5000));
@@ -34,7 +48,7 @@ export const Chat = ({ messages }) => {
       </div>
       <div className="chat_body">
         {messages.map((message) => (
-          <div key={message._id}>
+          <div key={nanoid()}>
             <p
               className={`chat_message ${message.received && "chat_receiver"}`}
             >
@@ -48,8 +62,15 @@ export const Chat = ({ messages }) => {
       <div className="chat_footer">
         <InsertEmoticon className="icon" />
         <form>
-          <input placeholder="Type a message" type="text" />
-          <button type="submit">Send a message</button>
+          <input
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+            placeholder="Type a message"
+            type="text"
+          />
+          <button onClick={sendMessage} type="submit">
+            Send a message
+          </button>
         </form>
         <MicIcon className="icon" />
       </div>
