@@ -6,6 +6,7 @@ import { Sidebar } from "./components/Sidebar";
 import axios from "./components/axios";
 import { Login } from "./components/Login";
 import { useAuth0 } from "@auth0/auth0-react";
+import { motion } from "framer-motion"
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -37,7 +38,12 @@ function App() {
   return (
     <div className="App">
       {!user ? (
+        <motion.div
+        initial={{scale: 3, opacity: 0}}
+        animate={{scale: 1, opacity: 1}}
+        transition={{ duration: 1 }}>
         <Login />
+        </motion.div>
       ) : (
         <div className="app_body">
           <Sidebar messages={messages} />

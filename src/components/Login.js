@@ -17,7 +17,7 @@ export const Login = () => {
           <h1>ChatterBox</h1>
         </div>
         <Button onClick={() => loginWithRedirect()} variant="contained">
-          Sign in using Google
+          Sign in/Sign up to Chat
         </Button>
       </div>
     </div>
