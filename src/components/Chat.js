@@ -6,6 +6,7 @@ import "./Chat.css";
 import axios from "./axios";
 import { nanoid } from "nanoid";
 import { useAuth0 } from "@auth0/auth0-react";
+import moment from "moment";
 
 export const Chat = ({ messages }) => {
   const [input, setInput] = useState("");
@@ -18,7 +19,7 @@ export const Chat = ({ messages }) => {
     await axios.post("/messages/new", {
       message: input,
       name: user.email,
-      timestamp: new Date(),
+      timestamp: moment().format("LLL"),
       received: true,
     });
     setInput("");
