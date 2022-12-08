@@ -18,7 +18,7 @@ export const Chat = ({ messages }) => {
     await axios.post("/messages/new", {
       message: input,
       name: user.email,
-      timestamp: new Date().toUTCString(),
+      timestamp: new Date(),
       received: true,
     });
     setInput("");
